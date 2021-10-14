@@ -13,27 +13,23 @@ size_t  ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 }
 size_t  ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-    size_t	srclen = ft_strlen(src);
-    int		i;
+    size_t		i;
+    size_t      j;
 
 	i = 0;
-	while (dst[i] != '\0')
-	{
-		(*dst)++;
+    j = 0;
+	while (dst[i] != '\0' && dstsize > i)
 		i++;
-	}
-    if (srclen <= dstsize - i)
+    if (dstsize > i)
     {
-		while (srclen--)
-			*dst++ = *src++;
-	}
-    else if (dstsize != 0)
-    {
-        while (dstsize--)
-			*dst++ = *src++;
-        *dst = '\0';
+        while (dstsize - i - 1 > j)
+        {
+            dst[i + j] = src[j];
+            j++;
+        }
+        dst[i + j] = '\0';
     }
-    return (i + srclen);
+    return (i + ft_strlen(src));
 }
 
 int		ft_toupper(int c)
@@ -52,10 +48,15 @@ int		ft_tolower(int c)
 
 char*	ft_strchr(const char *s, int c)
 {
-	char *a;
+	char	*a;
+	int		i;
 
+	i = 0;
 	a = (char *)s;
-	while (*a != c)
-		(*a)++;
-	return (a);
+	while (a[i] != c && a[i] != '\0')
+		i++;
+    if (a[i] == c)
+        return (a+i);
+    else
+        return (NULL);
 }

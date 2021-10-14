@@ -1,7 +1,6 @@
 NAME	=	libft.a
 #
-SRCS	=	func1.c		func2.c		func3.c\
-			func4.c		func5.c
+SRCS	=	$(shell ls ./*.c)
 #
 HEADER	=	libft.h
 OBJ		=	$(patsubst %.c, %.o, $(SRCS))
