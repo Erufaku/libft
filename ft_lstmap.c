@@ -8,10 +8,10 @@ t_list 	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	if (lst)
 	{
 		new_elem = ft_lstnew(f(lst->content));
-		first_elem = new_elem;
 		if (!new_elem)
 			return (NULL);
-		new_lst = new_elem;
+		first_elem = new_elem;
+		new_lst = first_elem;
 		while (lst)
 		{
 			new_elem = ft_lstnew(f(lst->content));

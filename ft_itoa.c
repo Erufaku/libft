@@ -25,6 +25,10 @@ char    *ft_itoa(int n)
 	int     flag;
 	int     i;
 
+	if (n == 0)
+		return(ft_strdup("0"));
+	else if (n == -2147483648)
+		return(ft_strdup("-2147483648"));
 	flag = check_flag(&n);
 	a = (char *)malloc(flag + ft_intlen(n) + 1);
 	if (!a)
@@ -33,10 +37,6 @@ char    *ft_itoa(int n)
 		a[0] = '-';
 	i = flag + ft_intlen(n) - 1;
 	a[i + 1] = '\0';
-	if (n == 0)
-		return(ft_strdup("0"));
-	else if (n == -2147483648)
-		return(ft_strdup("-2147483648"));
 	while (n > 0) {
 		a[i] = n % 10 + '0';
 		n = n / 10;
