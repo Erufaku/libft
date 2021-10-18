@@ -1,16 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jasalaza <jasalaza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 22:26:46 by jasalaza          #+#    #+#             */
+/*   Updated: 2021/10/18 22:47:52 by jasalaza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-int        ft_intlen(int n)
+int	ft_intlen(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (n > 0) {
+	while (n > 0)
+	{
 		n /= 10;
 		i++;
 	}
 	return (i);
 }
-int    check_flag(int *n)
+
+int	check_flag(int *n)
 {
 	if (*n < 0)
 	{
@@ -19,16 +33,17 @@ int    check_flag(int *n)
 	}
 	return (0);
 }
-char    *ft_itoa(int n)
+
+char	*ft_itoa(int n)
 {
-	char    *a;
-	int     flag;
-	int     i;
+	char	*a;
+	int		flag;
+	int		i;
 
 	if (n == 0)
-		return(ft_strdup("0"));
+		return (ft_strdup("0"));
 	else if (n == -2147483648)
-		return(ft_strdup("-2147483648"));
+		return (ft_strdup("-2147483648"));
 	flag = check_flag(&n);
 	a = (char *)malloc(flag + ft_intlen(n) + 1);
 	if (!a)
@@ -37,7 +52,8 @@ char    *ft_itoa(int n)
 		a[0] = '-';
 	i = flag + ft_intlen(n) - 1;
 	a[i + 1] = '\0';
-	while (n > 0) {
+	while (n > 0)
+	{
 		a[i] = n % 10 + '0';
 		n = n / 10;
 		i--;
